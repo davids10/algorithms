@@ -12,4 +12,6 @@ function[] = euler_method(y1,h)
         y(i+1) = y(i) + dydx * h;
         x(i+1) = x(i) + h;
     end
+
+    plot(x,y);
 endfunction
