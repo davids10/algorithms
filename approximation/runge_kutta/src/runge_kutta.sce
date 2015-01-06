@@ -2,11 +2,10 @@
 //34567890123456789012345678901234567890123456789012345678901234567890
 //====================================================================
 //
-// Function Name: euler_method
+// Function Name: runge_kutta
 //
-//     Euler's method is a numerical technique to solve ordinary
-//     differential equations. Use this algorithm to approximate
-//     the value of y when x = some value.
+// The Runge-Kutta 2nd order method is a numerical technique used to
+// solve an ordinary differential equation.
 //
 // Input parameters
 //     y1  = y initial value
@@ -23,20 +22,22 @@
 //
 //--------------------------------------------------------------------
 //       Author: Nik Mohamad Aizuddin bin Nik Azmi
-// Date Created: 27-DEC-2014
+// Date Created: 06-JAN-2015
 //--------------------------------------------------------------------
 //                  MIT Licensed. See LICENSE file
 //
 //====================================================================
 
-function[x, y] = euler_method(y1, h, n, IVP)
+function[x, y] = runge_kutta(y1, h, n, IVP)
 
     y=zeros(n, 1);
     x=zeros(n, 1);
     y(1)=y1;
 
     for i=1:1:n
-        y(i+1) = y(i) + IVP( x(i), y(i) ) * h;
+        k1 = IVP( x(i), y(i) );
+        k2 = IVP( x(i)+h, y(i)+(k1*h) );
+        y(i+1) = y(i) + (k1/2.0 + k2/2.0) * h;
         x(i+1) = x(i) + h;
     end
 
