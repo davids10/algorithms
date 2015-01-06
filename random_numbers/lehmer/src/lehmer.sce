@@ -50,7 +50,7 @@ function[x] = lehmer(seed, mult, mod_value)
         x(i+1) = pmodulo( (mult^i) * x(1) ,mod_value);
     end
     
-    // Check if a is full-period multiplier
+    // Check if mult is full-period multiplier
     i = 1;
     temp = mult;
     while temp ~= 1
